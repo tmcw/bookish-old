@@ -13,6 +13,7 @@
     "bent": "^1.1.0",
     "micro": "^9.0.2",
     "micro-dev": "^2.1.0",
+    "pelo": "^0.0.5",
     "web-auto-extractor": "^1.0.17"
   }
 }

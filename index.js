@@ -2,30 +2,39 @@ const {send} = require('micro');
 const bent = require('bent');
 const wae = require('web-auto-extractor').default;
 const https = require('https');
+const pelo = require('pelo');
+const url = require('url');
 const {GOODREADS_KEY} = require('./settings');
 const getJSON = bent('json', 200);
 const getText = bent('string', 200);
 const getRedirect = bent('string', 303);
 
 const methods = {
-  'ISBN': 'International Standard Book Number',
-  'OCLC': {
+  'isbn': {
+    name: 'International Standard Book Number',
+    example: '0140098682'
+  },
+  'oclc': {
     name: 'Ohio College Library Center',
-    url: id => `http://www.worldcat.org/oclc/${id}?tab=details`
+    url: id => `http://www.worldcat.org/oclc/${id}?tab=details`,
+    example: '956478923'
   },
-  'OLID': {
+  'olid': {
     name: 'OpenLibrary ID',
-    url: id => `https://openlibrary.org/books/${id}`
+    url: id => `https://openlibrary.org/books/${id}`,
+    example: 'OL794799M'
   },
-  'LCCN': {
+  'lccn': {
     name: 'Library of Congress Control Number',
-    url: id => `http://lccn.loc.gov/${id}`
+    url: id => `http://lccn.loc.gov/${id}`,
+    example: '95030619'
   },
   // TODO: necessary
-  'ASIN': 'Amazon Standard Identification Number',
+  // 'asin': 'Amazon Standard Identification Number',
   'goodreads': {
     name: 'GoodReads ID',
-    url: id => `https://www.goodreads.com/book/show/${id}`
+    url: id => `https://www.goodreads.com/book/show/${id}`,
+    example: '544063'
   }
 };
 
@@ -82,30 +91,91 @@ const WorldCat = {
   }
 }
 
-module.exports = async (req, res) => {
+async function query(url) {
   let match;
-  
-  if (match = req.url.match(/^\/isbn\/(\d{10,13})$/)) {
-    return send(res, 200, {
-      openlibrary: await OpenLibrary.ISBN(match[1]),
-      goodreads: await goodreads.ISBN(match[1])
-    });
+  if (match = url.match(/^\/\?isbn=(\d{10,13})$/)) {
+    return {
+      data: {
+        openlibrary: await OpenLibrary.ISBN(match[1]),
+        goodreads: await goodreads.ISBN(match[1])
+      }
+    };
   }
 
-  if (match = req.url.match(/^\/olid\/(OL\d{10,13})$/)) {
-    return send(res, 200, await OpenLibrary.OLID(match[1]));
+  if (match = url.match(/^\/\?olid=(OL\d{10,13})$/)) {
+    return {
+      data: await OpenLibrary.OLID(match[1])
+    };
   }
 
-  if (match = req.url.match(/^\/lccn\/(\d+)$/)) {
-    return send(res, 200, await OpenLibrary.LCCN(match[1]));
+  if (match = url.match(/^\/\?lccn=(\d+)$/)) {
+    return {
+      data: await OpenLibrary.LCCN(match[1])
+    };
   }
 
-  if (match = req.url.match(/^\/oclc\/(\d+)$/)) {
-    return send(res, 200, {
-      openlibrary: await OpenLibrary.OCLC(match[1]),
-      worldcat: await WorldCat.OCLC(match[1])
-    });
+  if (match = url.match(/^\/\?oclc=(\d+)$/)) {
+    return {
+      data: {
+        openlibrary: await OpenLibrary.OCLC(match[1]),
+        worldcat: await WorldCat.OCLC(match[1])
+      }
+    };
   }
 
-  res.end('Welcome to micro');
+  if (url === '/') {
+    return {
+      "jsonapi": {
+        "version": "1.0"
+      }
+    };
+  }
+}
+
+function renderPage(results) {
+  if (results.data) {
+    return pelo`<html>
+      <h2>Results</h2>
+      <pre>${JSON.stringify(results.data, null, 2)}
+      </pre>
+    </html>`;
+  } else {
+    return pelo`<html>
+      <h2>bookish</h2>
+      <p>A book by lots of other identifiers should be the same book.</p>
+      ${Object.keys(methods).map(method => pelo`
+      <form method=get>
+        <label for=${method}>${method}</label>
+        <input name=${method} type=text />
+        <input type=submit value='Search' />
+      </form>`)}
+      <hr />
+      <h3>Information</h3>
+      <ul>
+        ${Object.keys(methods).map(method => pelo`
+        <li>
+          ${method} is ${methods[method].name}.
+          <ul>
+          <li>
+          Example:
+          <a
+          href='/?${method}=${methods[method].example}'>${method}=${methods[method].example}</a>
+          </li>
+          </ul>
+        </li>`)}
+      </ul>
+    </html>`;
+  }
+}
+
+module.exports = async (req, res) => {
+  const results = await query(req.url);
+  if (req.headers.accept.match(/json/)) {
+    return send(res, 200, results);
+  } else if (results) {
+    res.setHeader('Content-Type', 'text/html');
+    return res.end(renderPage(results).toString());
+  } else {
+    res.end();
+  }
 }
