@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "bent": "^1.1.0",
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.4",
     "micro": "^9.0.2",
     "micro-dev": "^2.1.0",
     "pelo": "^0.0.5",
