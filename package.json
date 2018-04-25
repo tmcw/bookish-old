@@ -15,13 +15,14 @@
     "got": "^8.3.0",
     "lodash": "^4.17.4",
     "micro": "^9.0.2",
-    "micro-dev": "^2.1.0",
     "pelo": "^0.0.5",
+    "tachyons": "^4.9.1",
     "web-auto-extractor": "^1.0.17"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
     "jest": "^22.4.3",
+    "micro-dev": "^2.1.0",
     "prettier": "^1.12.1"
   }
 }
