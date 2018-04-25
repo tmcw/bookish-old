@@ -1,9 +1,8 @@
-const bent = require("bent");
-const _ = require("lodash");
-const getText = bent("string", 200);
+const got = require("got");
+const cheerio = require("cheerio");
 const { GOODREADS_KEY } = require("../settings");
 const getXML = async url =>
-  cheerio.load(await bent("string", 200)(url), { xmlMode: true });
+  cheerio.load((await got(url)).body, { xmlMode: true });
 
 // https://www.goodreads.com/api/index#book.isbn_to_id
 class GoodReads {
@@ -11,11 +10,11 @@ class GoodReads {
     this.base = base;
   }
   async ISBN(isbn) {
-    const id = await getText(
+    const {body} = await got(
       `${this.base}/isbn_to_id/${isbn}?key=${GOODREADS_KEY}`
     );
     return {
-      goodreads: [String(id)]
+      goodreads: [body]
     };
   }
   async GoodReads(goodreads) {

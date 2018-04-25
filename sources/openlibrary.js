@@ -1,6 +1,5 @@
-const bent = require("bent");
+const got = require("got");
 const _ = require("lodash");
-const getJSON = bent("json", 200);
 
 // https://openlibrary.org/dev/docs/api/books
 // TODO: handle 10 vs 13
@@ -12,7 +11,7 @@ class OpenLibrary {
   }
   async getType(type, val) {
     try {
-      let res = await getJSON(`${this.base}${type}:${val}`);
+      let res = (await got(`${this.base}${type}:${val}`, { json: true })).body;
       let identifiers = _.property([`${type}:${val}`, "identifiers"])(res);
       identifiers.isbn = (identifiers.isbn_10 || []).concat(
         identifiers.isbn_13 || []

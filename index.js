@@ -4,20 +4,7 @@
  * - viaf identifiers?
  * - write back to openlibrary whenever someone queries for a book?
  */
-
-const { send } = require("micro");
-const bent = require("bent");
-const https = require("https");
-const pelo = require("pelo");
-const url = require("url");
-const cheerio = require("cheerio");
-const { GOODREADS_KEY } = require("./settings");
-const getJSON = bent("json", 200);
-const getText = bent("string", 200);
-const getRedirect = bent("string", 303);
 const _ = require("lodash");
-const getXML = async url =>
-  cheerio.load(await bent("string", 200)(url), { xmlMode: true });
 
 const methods = {
   isbn: {

@@ -1,8 +1,6 @@
-const https = require("https");
 const wae = require("web-auto-extractor").default;
-const bent = require("bent");
+const got = require("got");
 const _ = require("lodash");
-const getText = bent("string", 200);
 
 // TODO: handle 10 vs 13
 class WorldCat {
@@ -10,12 +8,10 @@ class WorldCat {
     this.base = base;
   }
   async get(type, id) {
-    const redirectedUrl = await new Promise(resolve => {
-      https.get(`${this.base}/${type}/${id}`, res => {
-        resolve(res.headers.location);
-      });
+    const {body} = await got(`${this.base}/${type}/${id}`, res => {
+      resolve(res.headers.location);
     });
-    const microdata = wae().parse(await getText(redirectedUrl));
+    const microdata = wae().parse(body);
     // TODO: how else could this data be shaped?
     return {
       isbn: _.property(["rdfa", "ProductModel", 0, "schema:isbn"])(microdata),
