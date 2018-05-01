@@ -3,8 +3,16 @@
  *
  * Guessed types:
  *
+ * DONE
+ *
  * - openlibrary
- * - 
+ * - isbn 10
+ * - isbn 13
+ * - lccn
+ *
+ * TODO
+ *
+ * - goodreads
  *
  * Resources https://en.wikipedia.org/wiki/Library_of_Congress_Control_Number#Format
  */
