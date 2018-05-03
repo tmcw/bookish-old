@@ -103,3 +103,4 @@ function collapseResults(results) {
 
 module.exports.guess = guess;
 module.exports.methods = methods;
+module.exports.collapseResults = collapseResults;

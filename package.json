@@ -2,12 +2,14 @@
   "name": "bookish",
   "version": "1.0.0",
   "description": "a book identification go-between",
-  "main": "index.js",
+  "main": "api.js",
   "author": "Tom MacWright",
   "license": "MIT",
   "scripts": {
-    "start": "micro",
-    "dev": "micro-dev",
+    "start": "micro api_server.js",
+    "dev": "micro-dev api_server.js -p 4013",
+    "start-client": "micro client_server.js",
+    "dev-client": "micro-dev client_server.js -p 4012",
     "test": "jest"
   },
   "dependencies": {
@@ -15,6 +17,7 @@
     "got": "^8.3.0",
     "lodash": "^4.17.4",
     "micro": "^9.0.2",
+    "micro-ratelimit": "^0.3.0",
     "pelo": "^0.0.5",
     "tachyons": "^4.9.1",
     "web-auto-extractor": "^1.0.17"
