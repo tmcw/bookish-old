@@ -1,5 +1,8 @@
 const fs = require("fs");
-const tachyons = fs.readFileSync("./tachyons.min.css", "utf8");
+const tachyons = fs.readFileSync(
+  require.resolve("tachyons").replace(".css", ".min.css"),
+  "utf8"
+);
 module.exports = `<html>
 <title>Booky | help</title>
 <style>${tachyons}</style>
