@@ -10,6 +10,7 @@
     "dev": "micro-dev api_server.js -p 4013",
     "start-client": "micro client_server.js",
     "dev-client": "micro-dev client_server.js -p 4012",
+    "release": "standard-version",
     "test": "jest"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "jest": "^22.4.3",
     "micro-dev": "^2.1.0",
     "prettier": "^1.12.1",
+    "standard-version": "^4.3.0",
     "test-listen": "^1.1.0"
   }
 }
