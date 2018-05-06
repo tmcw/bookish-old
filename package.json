@@ -1,6 +1,6 @@
 {
   "name": "bookish",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a book identification go-between",
   "main": "index.js",
   "author": "Tom MacWright",
