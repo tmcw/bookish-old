@@ -3,6 +3,7 @@ const rateLimit = require("micro-ratelimit");
 const { parse } = require("url");
 const got = require("got");
 const { parse: parseQuery, stringify: stringifyQuery } = require("querystring");
+const help = require("./help")
 // const { send } = require("micro");
 // const { guess, methods } = require("./api");
 
@@ -41,6 +42,9 @@ function render(ids) {
       type='submit' value="Search" />
   </form>
 
+${
+    ids
+      ? `
   <div class='pv3'>
     <div class='br2 pa2 bg-light-yellow flex justify-between'>
       <span>Input: ...</span>
@@ -77,7 +81,9 @@ isbn: 123456789
 isbn13: 1111123456789
 ---</pre>
 
-  </div>
+  </div>`
+      : ""
+  }
 </div>
 </body>
 </html>`;
@@ -90,6 +96,10 @@ module.exports = rateLimit(
 
     if (pathname === "/") {
       return render();
+    }
+
+    if (pathname === "/help") {
+      return help;
     }
 
     if (pathname === "/search") {
