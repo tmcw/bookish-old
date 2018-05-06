@@ -14,6 +14,7 @@ module.exports = rateLimit(
 
     if (pathname === "/search") {
       const { id, type } = parseQuery(query);
+      console.log(`search id=${id} type=${type}`);
       const method = methods.find(method => method.id === type);
       if (method) {
         return collapseResults(await method.resolve(id));

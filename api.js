@@ -10,7 +10,7 @@ const OpenLibrary = require("./sources/openlibrary");
 const WorldCat = require("./sources/worldcat");
 const guess = require("./guess");
 
-const goodreads = new GoodReads();
+const goodReads = new GoodReads();
 const openLibrary = new OpenLibrary();
 const worldCat = new WorldCat();
 
@@ -20,10 +20,15 @@ const methods = [
     name: "International Standard Book Number",
     example: "0140098682",
     resolve: async id => {
+      const [openlibrary, goodreads, worldcat] = await Promise.all([
+        openLibrary.ISBN(id),
+        goodReads.ISBN(id),
+        worldCat.ISBN(id)
+      ]);
       return {
-        openlibrary: await openLibrary.ISBN(id),
-        goodreads: await goodreads.ISBN(id),
-        worldcat: await worldCat.ISBN(id)
+        openlibrary,
+        goodreads,
+        worldcat
       };
     }
   },
@@ -67,13 +72,13 @@ const methods = [
     url: id => `https://www.goodreads.com/book/show/${id}`,
     example: "544063",
     resolve: async id => {
-      let g = await goodreads.GoodReads(id);
+      let g = await goodReads.GoodReads(id);
       if (g.isbn && g.isbn.length) {
         let isbn = g.isbn[0];
         return {
           data: {
             openlibrary: await openLibrary.ISBN(isbn),
-            goodreads: await goodreads.ISBN(isbn),
+            goodreads: await goodReads.ISBN(isbn),
             worldcat: await worldCat.ISBN(isbn)
           }
         };

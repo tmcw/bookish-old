@@ -11,7 +11,11 @@ class OpenLibrary {
   }
   async getType(type, val) {
     try {
-      let res = (await got(`${this.base}${type}:${val}`, { json: true })).body;
+      const url = `${this.base}${type}:${val}`;
+      console.log(`openlibrary/request url=${url}`);
+      console.time("openlibrary/request");
+      let res = (await got(url, { json: true, timeout: 2000 })).body;
+      console.timeEnd("openlibrary/request");
       let identifiers = _.property([`${type}:${val}`, "identifiers"])(res);
       identifiers.isbn10 = identifiers.isbn_10;
       delete identifiers.isbn_10;

@@ -99,6 +99,11 @@ module.exports = rateLimit(
 
     if (pathname === "/search") {
       const { id, type } = parseQuery(query);
+      const url = `${process.env.API_BACKEND}/search?${stringifyQuery({
+        id,
+        type
+      })}`;
+      console.log(`request/backend url=${url}`);
       const { body } = await got(
         `${process.env.API_BACKEND}/search?${stringifyQuery({ id, type })}`,
         {

@@ -8,8 +8,12 @@ class WorldCat {
     this.base = base;
   }
   async get(type, id) {
+    console.log('worldcat/request');
+    console.time('worldcat/request');
     const { body } = await got(`${this.base}/${type}/${id}`);
     const microdata = wae().parse(body);
+    console.timeEnd('worldcat/request');
+    console.log('worldcat/parse');
     // TODO: how else could this data be shaped?
     return {
       isbn10: _.property(["rdfa", "ProductModel", 0, "schema:isbn"])(
