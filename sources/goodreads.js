@@ -1,6 +1,6 @@
 const got = require("got");
 const cheerio = require("cheerio");
-const { GOODREADS_KEY } = require("../settings");
+const GOODREADS_KEY = "H0A4fmIW7WF2btmo1ACpw";
 const getXML = async url =>
   cheerio.load((await got(url)).body, { xmlMode: true });
 

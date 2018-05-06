@@ -1,14 +1,12 @@
 const fs = require("fs");
 const rateLimit = require("micro-ratelimit");
 const { parse } = require("url");
-const { SITE_NAME } = require("./settings");
 const got = require("got");
 const { parse: parseQuery, stringify: stringifyQuery } = require("querystring");
 const help = require("./help");
 // const { send } = require("micro");
 // const { guess, methods } = require("./api");
 
-const backend = "http://localhost:4013";
 const tachyons = fs.readFileSync("./tachyons.min.css", "utf8");
 
 function render(id, type, ids) {
@@ -16,7 +14,7 @@ function render(id, type, ids) {
 <html lang="en">
 <head>
 <title>
-  ${SITE_NAME}
+  Booky
 </title>
 <meta name="description" content="give a book identifier, get the rest">
 <meta charset="utf-8">
@@ -26,7 +24,7 @@ function render(id, type, ids) {
 <div class='mw6 ph4-ns sans-serif center'>
 
   <div class='flex justify-between items-end'>
-    <h1 class='f3 mt4 mb0'>${SITE_NAME}</h1>
+    <h1 class='f3 mt4 mb0'>Booky</h1>
     <a href='/help'>help</a>
   </div>
 
@@ -99,7 +97,7 @@ module.exports = rateLimit(
     if (pathname === "/search") {
       const { id, type } = parseQuery(query);
       const { body } = await got(
-        `${backend}/search?${stringifyQuery({ id, type })}`,
+        `${process.env.API_BACKEND}/search?${stringifyQuery({ id, type })}`,
         {
           json: true
         }

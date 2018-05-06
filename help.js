@@ -1,8 +1,7 @@
 const fs = require("fs");
-const { SITE_NAME } = require("./settings");
 const tachyons = fs.readFileSync("./tachyons.min.css", "utf8");
 module.exports = `<html>
-<title>${SITE_NAME} | help</title>
+<title>Booky | help</title>
 <style>${tachyons}</style>
 <body class="sans-serif">
 <div class='mw7 ph4 pv5 center'>
