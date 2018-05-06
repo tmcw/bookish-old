@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { join } = require("path");
 const rateLimit = require("micro-ratelimit");
 const { parse } = require("url");
 const got = require("got");
@@ -7,7 +8,7 @@ const help = require("./help");
 // const { send } = require("micro");
 // const { guess, methods } = require("./api");
 
-const tachyons = fs.readFileSync("./tachyons.min.css", "utf8");
+const tachyons = fs.readFileSync(join(__dirname, "./tachyons.min.css"), "utf8");
 
 function render(id, type, ids) {
   return `<!DOCTYPE html>
