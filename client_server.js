@@ -1,21 +1,22 @@
 const fs = require("fs");
 const rateLimit = require("micro-ratelimit");
 const { parse } = require("url");
+const { SITE_NAME } = require("./settings");
 const got = require("got");
 const { parse: parseQuery, stringify: stringifyQuery } = require("querystring");
-const help = require("./help")
+const help = require("./help");
 // const { send } = require("micro");
 // const { guess, methods } = require("./api");
 
 const backend = "http://localhost:4013";
 const tachyons = fs.readFileSync("./tachyons.min.css", "utf8");
 
-function render(ids) {
+function render(id, type, ids) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>
-  bookish
+  ${SITE_NAME}
 </title>
 <meta name="description" content="give a book identifier, get the rest">
 <meta charset="utf-8">
@@ -25,7 +26,7 @@ function render(ids) {
 <div class='mw6 ph4-ns sans-serif center'>
 
   <div class='flex justify-between items-end'>
-    <h1 class='f3 mt4 mb0'>Booky</h1>
+    <h1 class='f3 mt4 mb0'>${SITE_NAME}</h1>
     <a href='/help'>help</a>
   </div>
 
@@ -47,7 +48,7 @@ ${
       ? `
   <div class='pv3'>
     <div class='br2 pa2 bg-light-yellow flex justify-between'>
-      <span>Input: ...</span>
+      <span>Input: ${id}</span>
       <!--<span>autodetected as ISBN-10</span>-->
     </div>
     <h3 class='mt4'>Equivalents</h3>
@@ -68,10 +69,6 @@ ${
           .join("")}
       </tbody>
     </table>
-    <h3 class='mt4'>API / Code</h3>
-    <a href='#'>https://booki.sh/isbn/123456789</a>
-<pre>bookish.isbn('123456789');</pre>
-    <h3 class='mt6'>More formats</h3>
     <h4 class='mt4'>Frontmatter</h4>
 <pre>---
 title: "White Rage"
@@ -110,7 +107,7 @@ module.exports = rateLimit(
           json: true
         }
       );
-      return render(body);
+      return render(id, type, body);
     }
 
     return "Route not found";

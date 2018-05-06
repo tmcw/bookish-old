@@ -1,4 +1,4 @@
-const handler = require("./index");
+const handler = require("./api_server");
 const micro = require("micro");
 const listen = require("test-listen");
 const got = require("got");
@@ -21,18 +21,18 @@ test("/", async () => {
 
 test("isbn", async () => {
   expect(
-    (await got(`${url}/search?isbn=9780812993547`, { json: true })).body
+    (await got(`${url}/search?type=isbn&id=9780812993547`, { json: true })).body
   ).toMatchSnapshot();
 });
 
 test("olid", async () => {
   expect(
-    (await got(`${url}/search?olid=OL25773328M`, { json: true })).body
+    (await got(`${url}/search?type=olid&id=OL25773328M`, { json: true })).body
   ).toMatchSnapshot();
 });
 
 test("lccn", async () => {
   expect(
-    (await got(`${url}/search?lccn=2015008120`, { json: true })).body
+    (await got(`${url}/search?type=lccn&id=2015008120`, { json: true })).body
   ).toMatchSnapshot();
 });
