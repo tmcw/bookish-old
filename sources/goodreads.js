@@ -10,7 +10,7 @@ class GoodReads {
     this.base = base;
   }
   async ISBN(isbn) {
-    const {body} = await got(
+    const { body } = await got(
       `${this.base}/isbn_to_id/${isbn}?key=${GOODREADS_KEY}`
     );
     return {
@@ -21,10 +21,12 @@ class GoodReads {
     const url = `${this.base}/show/${goodreads}.json?key=${GOODREADS_KEY}`;
     const res = await getXML(url);
     const ids = {};
-    ["isbn", "isbn13", "asin"].forEach(type => {
-      const value = res(`GoodreadsResponse > book > ${type}`).text();
-      if (value) ids[type] = [value];
-    });
+    [["isbn", "isbn10"], ["isbn13", "isbn13"], ["asin", "asin"]].forEach(
+      ([type, alias]) => {
+        const value = res(`GoodreadsResponse > book > ${type}`).text();
+        if (value) ids[alias] = [value];
+      }
+    );
     return ids;
   }
 }

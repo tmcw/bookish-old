@@ -13,9 +13,10 @@ class OpenLibrary {
     try {
       let res = (await got(`${this.base}${type}:${val}`, { json: true })).body;
       let identifiers = _.property([`${type}:${val}`, "identifiers"])(res);
-      identifiers.isbn = (identifiers.isbn_10 || []).concat(
-        identifiers.isbn_13 || []
-      );
+      identifiers.isbn10 = identifiers.isbn_10;
+      delete identifiers.isbn_10;
+      identifiers.isbn13 = identifiers.isbn_13;
+      delete identifiers.isbn_13;
       return identifiers;
     } catch (e) {
       return null;

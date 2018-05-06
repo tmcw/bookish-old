@@ -71,11 +71,9 @@ ${
     </table>
     <h4 class='mt4'>Frontmatter</h4>
 <pre>---
-title: "White Rage"
-author: "Carol Sanders"
-author: "Carol Sanders"
-isbn: 123456789
-isbn13: 1111123456789
+${Object.entries(ids)
+          .map(([key, value]) => `${key}: ${value[0]}`)
+          .join("\n")}
 ---</pre>
 
   </div>`

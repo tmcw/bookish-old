@@ -8,13 +8,16 @@ class WorldCat {
     this.base = base;
   }
   async get(type, id) {
-    const {body} = await got(`${this.base}/${type}/${id}`, res => {
-      resolve(res.headers.location);
-    });
+    const { body } = await got(`${this.base}/${type}/${id}`);
     const microdata = wae().parse(body);
     // TODO: how else could this data be shaped?
     return {
-      isbn: _.property(["rdfa", "ProductModel", 0, "schema:isbn"])(microdata),
+      isbn10: _.property(["rdfa", "ProductModel", 0, "schema:isbn"])(
+        microdata
+      ).filter(id => id.length == 10),
+      isbn13: _.property(["rdfa", "ProductModel", 0, "schema:isbn"])(
+        microdata
+      ).filter(id => id.length == 13),
       oclc: _.property(["rdfa", "CreativeWork", 0, "library:oclcnum"])(
         microdata
       )

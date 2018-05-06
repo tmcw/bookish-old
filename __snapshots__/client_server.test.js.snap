@@ -103,15 +103,7 @@ exports[`isbn 1`] = `
           <td class='pv2 ph3'>OL25773328M</td>
         </tr>
         <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn_13</td>
-          <td class='pv2 ph3'>9780812993547</td>
-        </tr>
-        <tr class='striped--moon-gray'>
           <td class='pv2 ph3'>amazon</td>
-          <td class='pv2 ph3'>0812993543</td>
-        </tr>
-        <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn_10</td>
           <td class='pv2 ph3'>0812993543</td>
         </tr>
         <tr class='striped--moon-gray'>
@@ -123,18 +115,25 @@ exports[`isbn 1`] = `
           <td class='pv2 ph3'>25489625</td>
         </tr>
         <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn</td>
-          <td class='pv2 ph3'>0812993543, 9780812993547</td>
+          <td class='pv2 ph3'>isbn10</td>
+          <td class='pv2 ph3'>0812993543</td>
+        </tr>
+        <tr class='striped--moon-gray'>
+          <td class='pv2 ph3'>isbn13</td>
+          <td class='pv2 ph3'>9780812993547</td>
         </tr>
       </tbody>
     </table>
     <h4 class='mt4'>Frontmatter</h4>
 <pre>---
-title: \\"White Rage\\"
-author: \\"Carol Sanders\\"
-author: \\"Carol Sanders\\"
-isbn: 123456789
-isbn13: 1111123456789
+alibris_id: 9780812993547
+lccn: 2015008120
+openlibrary: OL25773328M
+amazon: 0812993543
+oclc: 923007023
+goodreads: 25489625
+isbn10: 0812993543
+isbn13: 9780812993547
 ---</pre>
 
   </div>
@@ -205,15 +204,7 @@ exports[`lccn 1`] = `
           <td class='pv2 ph3'>OL25773328M</td>
         </tr>
         <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn_13</td>
-          <td class='pv2 ph3'>9780812993547</td>
-        </tr>
-        <tr class='striped--moon-gray'>
           <td class='pv2 ph3'>amazon</td>
-          <td class='pv2 ph3'>0812993543</td>
-        </tr>
-        <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn_10</td>
           <td class='pv2 ph3'>0812993543</td>
         </tr>
         <tr class='striped--moon-gray'>
@@ -225,18 +216,25 @@ exports[`lccn 1`] = `
           <td class='pv2 ph3'>25489625</td>
         </tr>
         <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn</td>
-          <td class='pv2 ph3'>0812993543, 9780812993547</td>
+          <td class='pv2 ph3'>isbn10</td>
+          <td class='pv2 ph3'>0812993543</td>
+        </tr>
+        <tr class='striped--moon-gray'>
+          <td class='pv2 ph3'>isbn13</td>
+          <td class='pv2 ph3'>9780812993547</td>
         </tr>
       </tbody>
     </table>
     <h4 class='mt4'>Frontmatter</h4>
 <pre>---
-title: \\"White Rage\\"
-author: \\"Carol Sanders\\"
-author: \\"Carol Sanders\\"
-isbn: 123456789
-isbn13: 1111123456789
+alibris_id: 9780812993547
+lccn: 2015008120
+openlibrary: OL25773328M
+amazon: 0812993543
+oclc: 923007023
+goodreads: 25489625
+isbn10: 0812993543
+isbn13: 9780812993547
 ---</pre>
 
   </div>
@@ -307,15 +305,7 @@ exports[`olid 1`] = `
           <td class='pv2 ph3'>OL25773328M</td>
         </tr>
         <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn_13</td>
-          <td class='pv2 ph3'>9780812993547</td>
-        </tr>
-        <tr class='striped--moon-gray'>
           <td class='pv2 ph3'>amazon</td>
-          <td class='pv2 ph3'>0812993543</td>
-        </tr>
-        <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn_10</td>
           <td class='pv2 ph3'>0812993543</td>
         </tr>
         <tr class='striped--moon-gray'>
@@ -327,18 +317,25 @@ exports[`olid 1`] = `
           <td class='pv2 ph3'>25489625</td>
         </tr>
         <tr class='striped--moon-gray'>
-          <td class='pv2 ph3'>isbn</td>
-          <td class='pv2 ph3'>0812993543, 9780812993547</td>
+          <td class='pv2 ph3'>isbn10</td>
+          <td class='pv2 ph3'>0812993543</td>
+        </tr>
+        <tr class='striped--moon-gray'>
+          <td class='pv2 ph3'>isbn13</td>
+          <td class='pv2 ph3'>9780812993547</td>
         </tr>
       </tbody>
     </table>
     <h4 class='mt4'>Frontmatter</h4>
 <pre>---
-title: \\"White Rage\\"
-author: \\"Carol Sanders\\"
-author: \\"Carol Sanders\\"
-isbn: 123456789
-isbn13: 1111123456789
+alibris_id: 9780812993547
+lccn: 2015008120
+openlibrary: OL25773328M
+amazon: 0812993543
+oclc: 923007023
+goodreads: 25489625
+isbn10: 0812993543
+isbn13: 9780812993547
 ---</pre>
 
   </div>

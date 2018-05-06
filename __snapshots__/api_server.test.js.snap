@@ -17,14 +17,10 @@ Object {
   "goodreads": Array [
     "25489625",
   ],
-  "isbn": Array [
-    "0812993543",
-    "9780812993547",
-  ],
-  "isbn_10": Array [
+  "isbn10": Array [
     "0812993543",
   ],
-  "isbn_13": Array [
+  "isbn13": Array [
     "9780812993547",
   ],
   "lccn": Array [
@@ -50,14 +46,10 @@ Object {
   "goodreads": Array [
     "25489625",
   ],
-  "isbn": Array [
-    "0812993543",
-    "9780812993547",
-  ],
-  "isbn_10": Array [
+  "isbn10": Array [
     "0812993543",
   ],
-  "isbn_13": Array [
+  "isbn13": Array [
     "9780812993547",
   ],
   "lccn": Array [
@@ -83,14 +75,10 @@ Object {
   "goodreads": Array [
     "25489625",
   ],
-  "isbn": Array [
-    "0812993543",
-    "9780812993547",
-  ],
-  "isbn_10": Array [
+  "isbn10": Array [
     "0812993543",
   ],
-  "isbn_13": Array [
+  "isbn13": Array [
     "9780812993547",
   ],
   "lccn": Array [
