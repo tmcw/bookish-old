@@ -33,7 +33,6 @@ function render(id, type, ids) {
   <form class="flex pv3" action="/search">
     <input name='id' type='text' class='f5 pa2 code flex-auto mr1 ba b--black-50 br2' />
     <select name='type' class='f5 ba b--black-50 mr1'>
-      <option value="detect">Detect</option>
       <option value="isbn">ISBN</option>
       <option value="olid">OLID</option>
       <option value="oclc">OCLC</option>
