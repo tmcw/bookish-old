@@ -1,4 +1,5 @@
 {
+  "name": "bookish-api",
   "alias": "api.bookish.tech",
   "scale": {
     "sfo1": {
