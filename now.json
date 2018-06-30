@@ -1,3 +1,9 @@
 {
-  "alias": "api.bookish.tech"
+  "alias": "api.bookish.tech",
+  "scale": {
+    "sfo1": {
+      "min": 1,
+      "max": "auto"
+    }
+  }
 }
