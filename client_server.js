@@ -72,7 +72,7 @@ ${
     <h4 class='mt4'>Frontmatter</h4>
 <pre>---
 ${Object.entries(ids)
-          .map(([key, value]) => `${key}: ${value[0]}`)
+          .map(([key, value]) => `${key}: "${value[0]}"`)
           .join("\n")}
 ---</pre>
 
