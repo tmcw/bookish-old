@@ -6,22 +6,17 @@
   "author": "Tom MacWright",
   "license": "MIT",
   "scripts": {
-    "start": "micro api_server.js",
-    "dev": "micro-dev api_server.js -p 4013",
-    "start-client": "micro client_server.js",
-    "dev-client": "micro-dev client_server.js -p 4012",
+    "start": "micro",
+    "dev": "micro-dev -p 4013",
     "release": "standard-version",
     "test": "jest"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "got": "^8.3.0",
     "lodash": "^4.17.4",
     "micro": "^9.0.2",
     "micro-ratelimit": "^0.3.0",
     "pelo": "^0.0.5",
-    "tachyons": "^4.9.1",
-    "web-auto-extractor": "^1.0.17"
+    "tachyons": "^4.9.1"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

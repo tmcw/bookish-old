@@ -1,6 +1,6 @@
 {
-  "name": "bookish-api",
-  "alias": "api.bookish.tech",
+  "name": "bookish",
+  "alias": "bookish.tech",
   "scale": {
     "sfo1": {
       "min": 1,
